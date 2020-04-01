@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import IsOffline from '../components/isOffline';
+import IsOffline from '../components/IsOffline';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
