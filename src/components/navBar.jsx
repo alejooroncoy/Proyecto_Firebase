@@ -107,12 +107,7 @@ const NavBar = withRouter( props => {
                         <a><span className="black-text name font-bold" id="span">Hola</span></a>
                         <a><p className="email"></p></a>
                         </div></li>
-                        <li><Link to={{
-                            pathname:`/user/${user.uid}`,
-                            state: {
-                                user: user
-                            }
-                        }}onClick={userPage} className="hover:cursor">MI CUENTA</Link></li>
+                        <li><a href="#user" onClick={userPage} className="hover:cursor">MI CUENTA</a></li>
                         <li><div className="divider"></div></li>
                         <li><a className="subheader">Mis productos</a></li>
                         <li>
