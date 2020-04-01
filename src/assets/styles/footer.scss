@@ -1,0 +1,47 @@
+$letter_color: #f3c614;
+$cursor_cer: url('../static/cerveza_g_mov.png'),auto;
+.letter 
+{
+    color: $letter_color;
+}
+.footer-copyright
+{
+    display: flex;
+    justify-content: space-between;
+}
+.right-footer
+{
+    margin-right: 31px;
+    cursor: $cursor_cer;
+}
+.left-footer
+{
+    margin-left: 31px;
+}
+.cer
+{
+    cursor: $cursor_cer;
+    & > li a
+    {
+        cursor: $cursor_cer;
+    }
+}
+.colorBtn
+{
+    background-color: black;
+    color: $letter_color;
+    border: 1px solid $letter_color;
+    border-radius: 100px;
+    transition: .5s;
+    text-transform: uppercase;
+    font-weight: bold;
+    &:hover, &:focus
+    {
+        background-color: $letter_color;
+        color: black;
+    }
+    &:active
+    {
+        transform: scale(.9);
+    }
+}

@@ -1,0 +1,23 @@
+$letter_color: #f3c614;
+label 
+{
+    color: $letter_color;
+    font-weight: bold;
+    font-size: 20px;
+}
+#search.validate:focus
+{
+    border-bottom: 1px solid rgba($color: black, $alpha: .5);
+    box-shadow: 0 1px 0 0 $letter_color;
+    color: black;
+    font-weight: bold;
+}
+input[type=text]:not(.browser-default):focus:not([readonly]) + label
+{
+    color: black;
+    font-weight: bold;
+}
+.input-field .prefix.active
+{
+    color: black
+}

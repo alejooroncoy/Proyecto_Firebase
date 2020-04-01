@@ -1,0 +1,14 @@
+$letter_color: #f3c614;
+$cursor_cer: url('../static/cerveza_g_mov.png'),auto;
+#button{
+    cursor: $cursor_cer;
+    &:hover &:focus
+    {
+    background-color: $letter_color;
+    color: black;        
+    }
+    &:active
+    {
+        transform: scale(.9);
+    }
+}

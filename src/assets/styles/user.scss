@@ -1,0 +1,16 @@
+$cursor_cer: url('../static/cerveza_g_mov.png'),auto;
+input[type=text]:not(.browser-default)
+{
+    width: 0;
+    border: none;
+    height: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: unset;
+    transition: 0s;
+}
+.file-field input[type=file]
+{
+    cursor: $cursor_cer
+}
