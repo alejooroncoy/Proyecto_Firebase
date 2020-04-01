@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, Switch} from 'react-router-dom';
+import {Router, Route, Switch,Redirect} from 'react-router-dom';
 import Home from '../containers/Home';
 import Layout from '../components/Layout';
 import ReactGA from 'react-ga';
@@ -27,6 +27,7 @@ const App = () => {
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/repassword" component={RePassword} />
                 <Route exact path="/user/:id" component={User} />
+                <Redirect from="/home" to="/" />
             </Switch>
         </Layout>
     </Router>
