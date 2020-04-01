@@ -30,7 +30,7 @@ const Register = props => {
                 displayName : `${state.name} ${state.lastName}`
               })
             const configuracion = {
-                url: 'http://localhost:5050/login',
+                url: 'https://cervewilmer.web.app/',
             };
             result.user.sendEmailVerification(configuracion)
             .catch(error => {

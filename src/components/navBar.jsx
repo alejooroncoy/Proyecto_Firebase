@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import Icon2 from '../assets/static/fW.png';
 import Icon from '../assets/static/user-icon.png';
+import {Link} from 'react-router-dom';
 import firebase from 'firebase/app';
 import {withRouter} from 'react-router-dom';
 import 'firebase/auth';
@@ -78,7 +79,6 @@ const NavBar = withRouter( props => {
         }
     };
     const userPage = e =>{
-        e.preventDefault();
         var elems = document.querySelector('.sidenav');
         var instances = M.Sidenav.init(elems,{
             edge: "right",
@@ -107,7 +107,12 @@ const NavBar = withRouter( props => {
                         <a><span className="black-text name font-bold" id="span">Hola</span></a>
                         <a><p className="email"></p></a>
                         </div></li>
-                        <li><a href="#" onClick={userPage} className="hover:cursor">MI CUENTA</a></li>
+                        <li><Link to={{
+                            pathname:`/user/${user.uid}`,
+                            state: {
+                                user: user
+                            }
+                        }}onClick={userPage} className="hover:cursor">MI CUENTA</Link></li>
                         <li><div className="divider"></div></li>
                         <li><a className="subheader">Mis productos</a></li>
                         <li>
@@ -129,6 +134,7 @@ const NavBar = withRouter( props => {
                             <a href="#" className="text-xl">No tienes ningun producto</a>
                         } 
                         </li>
+                        <li><a className="sidenav-close font-extrabold" href="#!">Cerrar carrito!</a></li>
                 </ul>
         </div>
     )
