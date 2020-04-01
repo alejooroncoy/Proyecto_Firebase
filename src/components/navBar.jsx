@@ -1,16 +1,17 @@
 import React,{useEffect,useState} from 'react';
 import Icon2 from '../assets/static/fW.png';
 import Icon from '../assets/static/user-icon.png';
-import {Link} from 'react-router-dom';
 import firebase from 'firebase/app';
-import {withRouter} from 'react-router-dom';
+import {withRouter,Link} from 'react-router-dom';
 import 'firebase/auth';
 import 'firebase/firestore';
 import Products_comprados from './products_C';
 const NavBar = withRouter( props => {
     const [state,setState] = useState({
         error: null,
-        item: []
+        item: [],
+        uid: 0,
+        userName: ''
     })
     const user = firebase.auth().currentUser;
     useEffect(() => {
@@ -24,6 +25,11 @@ const NavBar = withRouter( props => {
                 edge: "right",
             });
             instances.open();
+            setState({
+                ...state,
+                uid: user.uid,
+                userName: user.displayName
+            })
             firebase.firestore()
             .collection(user.uid)
             .orderBy('position', 'asc')
@@ -85,7 +91,6 @@ const NavBar = withRouter( props => {
         });
         instances.close();
         instances.destroy();
-        props.history.push(`/user/${user.uid}`);
     }
     const total = state.item.reduce((users, userspe) => users + Number(userspe.data.cost * userspe.data.cantidad),0); 
     return(
@@ -107,7 +112,12 @@ const NavBar = withRouter( props => {
                         <a><span className="black-text name font-bold" id="span">Hola</span></a>
                         <a><p className="email"></p></a>
                         </div></li>
-                        <li><a href="#user" onClick={userPage} className="hover:cursor">MI CUENTA</a></li>
+                        <li><Link to={{
+                            pathname: `/user/${state.uid}`,
+                            state:{
+                                userName: `${state.userName}`
+                            }
+                        }} onClick={userPage} className="hover:cursor">MI CUENTA</Link></li>
                         <li><div className="divider"></div></li>
                         <li><a className="subheader">Mis productos</a></li>
                         <li>

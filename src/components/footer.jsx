@@ -1,16 +1,64 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import swal from '@sweetalert/with-react';
+import {withRouter} from 'react-router-dom';
+import firebase from 'firebase';
+import 'firebase/auth';
 import '../assets/styles/footer.scss';
-const Footer = () =>  {
+const Footer = withRouter(props =>  {
+    const [state,setState] = useState({
+        name: '',
+        existe: false,
+    })
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            if(user)
+            {
+                setState({
+                    ...state,
+                    name: user.displayName,
+                    existe: true
+                })
+            }
+            else{
+                setState({
+                    ...state,
+                    existe: false
+                })
+            }
+        })
+    }, [])
+    function getlink() {
+        var aux = document.createElement("input");
+        aux.setAttribute("value", window.location.href.split("?")[0].split("#")[0]);
+        document.body.appendChild(aux);
+        aux.select();
+        document.execCommand("copy");
+        document.body.removeChild(aux);
+            swal({
+                icon: "success",
+                title:"Url Copiada!",
+            });
+    };
+    const hola = e => {
+        getlink()
+    }
     const compartir = e => {
         e.preventDefault();
         if( !navigator.share)
         {
-            alert("Soory:(");
-            return;{'  '}
-            <button className="btn">
-                Acepta Notifications para estar atento a los nuevos productos
-            </button>
+            swal({
+                content: (
+                    <div>
+                        <h1 className="text-3xl font-semibold">Comparte con tus amigos!</h1>
+                        <h3 className="my-8 font-semibold">{state.existe ? `Hola ${state.name}`: 'Hola! Registrate!'}</h3>
+                        <h2 className="font-semibold mb-12">Siempre los mejores! Comparte con el enlace de abajo!</h2>
+                        <a onClick={hola} className="text-primary font-semibold animacion text-5xl hover:cursor">Cervecería wilmer</a>
+                    </div>
+                )
+            })
+            return;
         }
+    const title = "Wilmer Cervezas"
         navigator.share({
             title: `${title}`,
             text: 'Comparte a otro Cervecero',
@@ -53,6 +101,6 @@ const Footer = () =>  {
                 <a className="letter right-footer" href="#">Actualizandonos a esta nueva era!</a>
           </div>
     </footer>
-)};
+)});
 
 export default Footer;

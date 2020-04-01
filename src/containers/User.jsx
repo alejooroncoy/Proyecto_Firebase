@@ -9,17 +9,35 @@ const User = props => {
         name: '',
         email: '',
     })
+    const [name1,setName] = useState({
+        nameUser:'',
+        photoURL: ''
+    });
     const user = firebase.auth().currentUser;
     useLayoutEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
             if(user)
             {
-                const titulo = document.getElementById("titulo");
-                titulo.innerHTML = `User: ${user.displayName}`;
+                console.log(user);
+                setState({
+                    name: user.displayName,
+                    email: user.email
+                })
+                setName({
+                    ...name1,
+                    nameUser: user.displayName
+                })
                 if(user.photoURL)
                 {
-                    const img = document.querySelector("#img");
-                    img.src = user.photoURL
+                    setName({
+                        ...name1,
+                        nameUser: user.displayName,
+                        photoURL: user.photoURL
+                    });
+                    setState({
+                        name: user.displayName,
+                        email: user.email
+                    })
                 }
             }else {
                 props.history.push("/")
@@ -62,6 +80,12 @@ const User = props => {
             }
         )
     }
+    const update = e => {
+        e.preventDefault();
+        firebase.auth().currentUser.updateProfile({
+            displayName: state.name
+        })
+    }
     return(
         <main className="pt-20 bg-image">
             <div className="flex w-full flex-col-reverse sm:justify-around items-center h-auto">
@@ -79,25 +103,28 @@ const User = props => {
                         </div>
                     </form>
                 </div>
-                <h1 className="mx-64 text-5xl font-bold py-4" id="titulo">{`User: ${user}`}</h1>
+                <h1 className="md:mx-64 text-4xl sm:text-5xl font-bold py-4">{`User: ${name1.nameUser}`}</h1>
             </div>
         <div className="container">
-        <div className="row">
+        <div className="row mb-0">
             <div className="col s12">
                 <div className="card-panel">
                     <form>
                         <div className="row section">
-                            <div className="input-field col s12 m6">
-                                <input id="first-name" name="name" type="email" onChange={onSubmit} className=" font-semibold"/>
+                            <div className="input-field col push-s2 pull-s2 s8">
+                                <input id="first-name" name="name" type="email" placeholder="nombre" defaultValue={state.name} onChange={onSubmit} className=" font-semibold"/>
                                 <label htmlFor="first-name">Nombre</label>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s12 m6">
-                                <input id="email" name="email" type="email" onChange={onSubmit}  className=" font-semibold"/>
+                            <div className="input-field col push-s2 pull-s2 s8 ">
+                                <input id="email" name="email" type="email" placeholder="email" defaultValue={state.email} onChange={onSubmit}  className=" font-semibold"/>
                                 <label htmlFor="email">Correo</label>
                             </div>
                         </div>
+                        <button className="btn right black font-semibold text-primary waves-effect waves-light center-align hover:cursor" onClick={update}>
+                            Actualizar <i className="material-icons right font-semibold">sync</i>
+                        </button>
                     </form>
                 </div>
             </div>

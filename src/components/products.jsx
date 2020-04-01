@@ -6,8 +6,8 @@ import 'firebase/auth';
 const Products = props => {
     const {id,data} = props;
     // const [state,setState] = useState(1)
-    let cd = 0;
     const enviar = e =>{
+        let cd = 0;
         e.preventDefault();
         const user = firebase.auth().currentUser;
         if(user)

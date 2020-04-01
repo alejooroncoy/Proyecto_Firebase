@@ -26,7 +26,7 @@ const App = () => {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/repassword" component={RePassword} />
-                <Route exact path="/user/:id" component={User} />
+                <Route exact path="/user/:id" component={User}/>
                 <Redirect from="/home" to="/" />
             </Switch>
         </Layout>

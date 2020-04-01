@@ -36,7 +36,7 @@ const Header = withRouter( props => {
                 }
             } else{
                 const bTn = document.querySelector("#bTn");
-                bTn.innerHTML = 'Iniciar Sesión';
+                bTn.innerHTML = 'Sign In';
             }
         })
     },[]);

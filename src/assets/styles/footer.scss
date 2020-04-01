@@ -45,3 +45,16 @@ $cursor_cer: url('../static/cerveza_g_mov.png'),auto;
         transform: scale(.9);
     }
 }
+.animacion
+{
+    transition: 1s;
+    animation: animacion1 infinite alternate 4s;
+}
+@keyframes animacion1
+{
+    50%
+    {
+        rotate: 10deg;
+    }
+}
+  

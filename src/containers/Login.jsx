@@ -66,11 +66,11 @@ const Login = props => {
                         </div>
                         <div className="section">
                             <div className="row">
-                                <div className="col s12 flex justify-evenly items-center">
+                                <div className="col s12 flex justify-around items-center">
                                 <a href="#" className="text-secondary font-semibold hover:cursor" onClick={oC}>
                                     Olvidaste tu contraseña
                                 </a>
-                                <Link className="text-secondary font-semibold hover:cursor" to="/register">
+                                <Link className="text-secondary font-semibold hover:cursor pt-32 sm:pt-0" to="/register">
                                     No tengo cuenta, quiero Registrarme!
                                 </Link>
                                     <button className="btn font-semibold right black text-primary waves-effect waves-light center-align" id="button" onClick={login}>Login

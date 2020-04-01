@@ -67,11 +67,11 @@ const Register = props => {
                     <form>
                         <div className="row section">
                             <div className="input-field col s12 m6">
-                                <input id="first-name" name="name" type="text" onChange={onSubmit} className="validate font-semibold" required/>
+                                <input id="first-name" name="name" type="email" onChange={onSubmit} className="font-semibold" required/>
                                 <label htmlFor="first-name">Nombre</label>
                             </div>
                             <div className="input-field col s12 m6">
-                                <input id="last-name" name="lastName" type="text" onChange={onSubmit}  className="validate font-semibold" required/>
+                                <input id="last-name" name="lastName" type="email" onChange={onSubmit}  className="font-semibold" required/>
                                 <label htmlFor="last-name">Apellido</label>
                             </div>
                         </div>
