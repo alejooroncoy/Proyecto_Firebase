@@ -8,6 +8,8 @@ const User = props => {
     const [state,setState] = useState({
         name: '',
         email: '',
+        porcentaje: 0,
+        acabado: false,
     })
     const [name1,setName] = useState({
         nameUser:'',
@@ -18,7 +20,6 @@ const User = props => {
         firebase.auth().onAuthStateChanged(user => {
             if(user)
             {
-                console.log(user);
                 setState({
                     name: user.displayName,
                     email: user.email
@@ -59,7 +60,11 @@ const User = props => {
             'state_changed',
             snapshot => {
                 const porcentaje = snapshot.bytesTransferred / snapshot.totalBytes * 100
-                console.log(porcentaje);
+                setState({
+                    ...state,
+                    porcentaje: porcentaje,
+                    acabado: true,
+                })
             },
             err => {
                 alert(`Error subiendo archivo = > ${err.message}`, 4000)
@@ -68,11 +73,11 @@ const User = props => {
                 task.snapshot.ref
                   .getDownloadURL()
                   .then(url => {
-                    console.log(url)
                     sessionStorage.setItem('newAvatar', url)
                     firebase.auth().currentUser.updateProfile({
                         photoURL: url
                     })
+                    location.reload();
                   })
                   .catch(err => {
                     alert(`Error obteniendo downloadURL => ${err}`, 4000)
@@ -85,6 +90,7 @@ const User = props => {
         firebase.auth().currentUser.updateProfile({
             displayName: state.name
         })
+        location.reload();
     }
     return(
         <main className="pt-20 bg-image">
@@ -101,6 +107,11 @@ const User = props => {
                             <input className="file-path validate hover:cursor" type="text"/>
                             </div>
                         </div>
+                        <div className="progress pt-4 mt-10">
+                                <div className="determinate" style={{
+                                    width: `${state.porcentaje}%`
+                                }}></div>
+                            </div>
                     </form>
                 </div>
                 <h1 className="md:mx-64 text-4xl sm:text-5xl font-bold py-4">{`User: ${name1.nameUser}`}</h1>
