@@ -3,10 +3,10 @@ module.exports = {
     plugins: [
         require('tailwindcss'),
         require('autoprefixer'),
-        // purgecss({
-        //     content: ["./**/*.html"],
-        //     defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
-        //   }),
+        purgecss({
+            content: ['./src/**/*.html', './src/**/*.jsx', './src/**/*.js'],
+            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+          }),
         require('cssnano')({
             preset: 'default',
         }),

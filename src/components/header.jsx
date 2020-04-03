@@ -42,7 +42,7 @@ const Header = withRouter( props => {
     },[]);
     return(
         <>
-        <header className="w-full h-20 fixed z-10 bg-black flex justify-center justify-between items-center shadow-2xl">
+        <header className="w-full h-20 fixed z-10 bg-black flex justify-center justify-between items-center shadow-2xl cursor">
         <h1 className="hidden w-32 md:block md:text-white ml-3">La mejor cerveza, para ti y tu familia</h1>
         <Link to="/" className="hover:cursor">
         <h1 className="text-white font-bold text-2xl md:text-4xl mx-6 md:m-0 xl:m-0">Cervecería Wilmer <IsOffline>Offline</IsOffline></h1>
