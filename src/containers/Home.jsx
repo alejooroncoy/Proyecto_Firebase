@@ -1,4 +1,4 @@
-import React,{useState,useLayoutEffect} from 'react';
+import React,{useState,useLayoutEffect,useEffect} from 'react';
 import 'materialize-css/sass/materialize.scss'
 import '../assets/styles/style.scss';
 import Search from '../components/search';
