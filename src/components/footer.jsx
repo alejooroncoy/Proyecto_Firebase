@@ -72,7 +72,7 @@ const Footer = withRouter(props =>  {
         })
     }
     return(
-    <footer className="page-footer black">
+    <footer className="page-footer black cursor_new">
         <div className="row">
             <div className="col l6 s12">
                 <h5 className="letter">
