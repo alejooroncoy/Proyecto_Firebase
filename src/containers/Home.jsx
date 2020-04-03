@@ -10,7 +10,6 @@ import Products from '../components/products';
 import PageLoading from '../components/PageLoading';
 import NavBar from '../components/navBar';
 import Usuario from '../components/Usuario';
-import { useEffect } from 'react/cjs/react.development';
 const Home = props => {
     const isMobile = () => {
         return (
