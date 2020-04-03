@@ -32,6 +32,10 @@
     margin-left: 10px;
     color: white;
 }
+.bottom-4
+{
+    bottom: 4.4rem;
+}
 @variants hover {
     .cursor
     {

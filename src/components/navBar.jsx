@@ -20,8 +20,8 @@ const NavBar = withRouter( props => {
             {
             const span = document.getElementById("span")
             span.innerHTML = `Hola  ${user.displayName}`
-            var elems = document.querySelector('.sidenav');
-            var instances = M.Sidenav.init(elems,{
+            const elems = document.querySelector('.sidenav');
+            const instances = M.Sidenav.init(elems,{
                 edge: "right",
             });
             instances.open();
@@ -92,6 +92,9 @@ const NavBar = withRouter( props => {
         instances.close();
         instances.destroy();
     }
+    const image = e => {
+        e.preventDefault();
+    }
     const total = state.item.reduce((users, userspe) => users + Number(userspe.data.cost * userspe.data.cantidad),0); 
     return(
         <div className="relative w-full ">
@@ -108,7 +111,7 @@ const NavBar = withRouter( props => {
                         <div className="background">
                             <img src={Icon2} alt="image"/>
                         </div>
-                        <a href="#user"><img className="circle" id="img" src={user ? user.photoURL ? user.photoURL : Icon : Icon}/></a>
+                        <a href="#user" onClick={image}><img id="img" className="circle cursor" src={user ? user.photoURL ? user.photoURL : Icon : Icon}/></a>
                         <a><span className="black-text name font-bold" id="span">Hola</span></a>
                         <a><p className="email"></p></a>
                         </div></li>
@@ -117,7 +120,7 @@ const NavBar = withRouter( props => {
                             state:{
                                 userName: `${state.userName}`
                             }
-                        }} onClick={userPage} className="hover:cursor">MI CUENTA</Link></li>
+                        }} onClick={userPage} className="cursor">MI CUENTA</Link></li>
                         <li><div className="divider"></div></li>
                         <li><a className="subheader">Mis productos</a></li>
                         <li>

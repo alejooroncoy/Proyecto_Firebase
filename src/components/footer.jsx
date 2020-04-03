@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import swal from '@sweetalert/with-react';
 import {withRouter} from 'react-router-dom';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import '../assets/styles/footer.scss';
 const Footer = withRouter(props =>  {
@@ -81,7 +81,7 @@ const Footer = withRouter(props =>  {
                 <p className="letter">
                     Si nuestro trabajo fue de su agrado! No dude en enviarnos un mensaje en nuestras principales fan-pages!
                 </p>
-                <button className="my-4 btn colorBtn hover:cursor" onClick={compartir}>
+                <button className="my-4 btn colorBtn cursor" onClick={compartir}>
                     Compartir:3
                 </button>
             </div>

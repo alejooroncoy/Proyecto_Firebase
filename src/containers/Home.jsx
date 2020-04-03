@@ -9,7 +9,19 @@ import 'firebase/firestore';
 import Products from '../components/products';
 import PageLoading from '../components/PageLoading';
 import NavBar from '../components/navBar';
+import Usuario from '../components/Usuario';
+import { useEffect } from 'react/cjs/react.development';
 const Home = props => {
+    const isMobile = () => {
+        return (
+            (navigator.userAgent.match(/Android/i)) ||
+            (navigator.userAgent.match(/webOS/i)) ||
+            (navigator.userAgent.match(/iPhone/i)) ||
+            (navigator.userAgent.match(/iPod/i)) ||
+            (navigator.userAgent.match(/iPad/i)) ||
+            (navigator.userAgent.match(/iBlackBerry/i))
+        );
+    }
     const [state,setState] = useState({
         error: false,
         item: []
@@ -43,11 +55,20 @@ const Home = props => {
             }
         })
     },[]);   
+    useEffect(() => {
+        setState({
+            ...state,
+            item: []
+        })
+    },[props.match.path])
     return(
         <main className="pt-20 bg-image">
             <section className="mt-8 ml-8 md:ml-24 grid alejoGrid">
                <Search/>
-               <NavBar/>
+               {
+                   isMobile() === null ? 
+                   <NavBar/>: <Usuario />
+               }
             </section>  
             <Catalogo text="Nuestros productos">
                 <Contenedor>

@@ -9,7 +9,6 @@ const User = props => {
         name: '',
         email: '',
         porcentaje: 0,
-        acabado: false,
     })
     const [name1,setName] = useState({
         nameUser:'',
@@ -63,7 +62,6 @@ const User = props => {
                 setState({
                     ...state,
                     porcentaje: porcentaje,
-                    acabado: true,
                 })
             },
             err => {
@@ -97,14 +95,14 @@ const User = props => {
             <div className="flex w-full flex-col-reverse sm:justify-around items-center h-auto">
                 <div className="flex flex-col items-center py-8">
                     <img className="bg-primary rounded-lg w-32 h-32" id="img" src={user ? user.photoURL ? user.photoURL : Icon : Icon}/>
-                    <form action="#" className="hover:cursor">
-                        <div className="file-field input-field hover:cursor">
-                            <div className="btn bg-black text-primary font-extrabold hover:text-black hover:bg-primary hover:cursor">
-                                <span className="p-0 hover:cursor">Sube tu imagen de perfil <i className="material-icons right large font-extrabold">unarchive</i></span>
-                                <input type="file" className="hover:cursor" onChange={updateAvatar}/>
+                    <form action="#" className="cursor">
+                        <div className="file-field input-field cursor">
+                            <div className="btn bg-black text-primary font-extrabold hover:text-black hover:bg-primary cursor">
+                                <span className="p-0 cursor">Sube tu imagen de perfil <i className="material-icons right large font-extrabold cursor">unarchive</i></span>
+                                <input type="file" className="cursor" onChange={updateAvatar}/>
                             </div>
-                            <div className="file-path-wrapper hover:cursor">
-                            <input className="file-path validate hover:cursor" type="text"/>
+                            <div className="file-path-wrapper cursor">
+                            <input className="file-path validate cursor" type="text"/>
                             </div>
                         </div>
                         <div className="progress pt-4 mt-10">
@@ -133,7 +131,7 @@ const User = props => {
                                 <label htmlFor="email">Correo</label>
                             </div>
                         </div>
-                        <button className="btn right black font-semibold text-primary waves-effect waves-light center-align hover:cursor" onClick={update}>
+                        <button className="btn right black font-semibold text-primary waves-effect waves-light center-align cursor" onClick={update}>
                             Actualizar <i className="material-icons right font-semibold">sync</i>
                         </button>
                     </form>
