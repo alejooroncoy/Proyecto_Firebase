@@ -71,8 +71,8 @@ const Usuario = props => {
                 user ? 
                 <a
                 className="mr-6 float-right btn-floating pulse btn-large waves-effect waves-light black notification-button cursor especial1 dropdown-trigger" style={{
-                    width: '4.5rem',
-                    height: '4.5rem'
+                    width: '5rem',
+                    height: '5rem'
                 }} data-target='dropdown1' onClick={menuV}>
                 <small className="notification-badge" style={{
                     right: '33px',

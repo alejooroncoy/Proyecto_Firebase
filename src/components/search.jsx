@@ -10,7 +10,7 @@ const Search = () => {
                             type="email"
                             className="font-extrabold"
                             />
-                            <label htmlFor="search">Buscar..</label>
+                            <label htmlFor="search" style={{color: 'black'}}>Buscar..</label>
             </div>
         </div>
     )

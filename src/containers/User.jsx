@@ -75,13 +75,14 @@ const User = props => {
                     firebase.auth().currentUser.updateProfile({
                         photoURL: url
                     })
-                    location.reload();
                   })
                   .catch(err => {
                     alert(`Error obteniendo downloadURL => ${err}`, 4000)
                 })
             }
         )
+        
+        location.reload();
     }
     const update = e => {
         e.preventDefault();
