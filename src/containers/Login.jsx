@@ -39,7 +39,7 @@ const Login = props => {
         window.open('/repassword','','width=600, height=400,left=100, top=100, right=100, bottom=100',void 0);
     }
     return(
-        <main className="pt-20">
+        <main className="pt-20 cursor_new ">
             <section className="container">
             <div className="row registro-titulo">
                 <div className="col s12">

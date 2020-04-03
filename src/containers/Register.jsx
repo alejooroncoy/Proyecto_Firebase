@@ -52,7 +52,7 @@ const Register = props => {
         })}
     }
     return(
-    <main className="pt-20">
+    <main className="pt-20 cursor_new ">
          <section className="container">
             <div className="row registro-titulo">
                 <div className="col s12">

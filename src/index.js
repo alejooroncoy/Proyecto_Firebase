@@ -3,6 +3,7 @@ import reactDOM from 'react-dom';
 import App from './routers/App';
 import firebase from 'firebase/app';
 import 'firebase/analytics';
+import 'firebase/messaging';
 const container = document.getElementById("container");
 firebase.initializeApp({
     apiKey: "AIzaSyBFWI1EkToFw4vcCectreIppHAISigJE0Y",
@@ -15,6 +16,7 @@ firebase.initializeApp({
     measurementId: "G-V0SE9SJWKF"
   });
 firebase.analytics();
-reactDOM.render(<App/>, container)
+
+reactDOM.render(<App/>, container);
 
 

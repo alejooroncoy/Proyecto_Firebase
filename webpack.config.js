@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PwaManifestPlugin = require('webpack-pwa-manifest');
-// const WorboxWebpack = require('workbox-webpack-plugin');
+const WorboxWebpack = require('workbox-webpack-plugin');
 module.exports = {
     entry: './src/index.js',
     output: {
@@ -105,47 +105,65 @@ module.exports = {
                 "apple-mobile-web-app-capable": 'yes',
             }
         }),
-        //  new WorboxWebpack.GenerateSW({
-        //     offlineGoogleAnalytics: {
-        //         parameterOverrides: {
-        //             cd1: 'offline'
-        //         }
-        //     },
-        //     skipWaiting: true,
-        //     clientsClaim: true,
+         new WorboxWebpack.GenerateSW({
+            offlineGoogleAnalytics: {
+                parameterOverrides: {
+                    cd1: 'offline'
+                }
+            },
+            skipWaiting: true,
+            clientsClaim: true,
+            swDest: 'service-worker.js',
+            runtimeCaching: [ 
+                {
+                    urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+
+                    handler: 'StaleWhileRevalidate',
+            
+                    options: {
+
+                      cacheName: 'imagesV',
+            
+                      expiration: {
+                        maxEntries: 15,
+                      },
+                    },
+                    method: 'GET'
+                },
+                {
+                    urlPattern: /^https?.*/,
+                    handler: 'NetworkFirst',
+                    method: 'GET'
+                },
+                {
+                    urlPattern: new RegExp("firebasestorage.googleapis.com"),
+                    handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'images'
+                    },
+                    method: 'GET'
+                },
+                {
+                    urlPattern: /^http?.*/,
+                    handler: 'NetworkFirst',
+                    method: 'GET'
+                },
+                {
+                    urlPattern: /^https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/,
+                    handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'google-fonts-cache',
+                        expiration:{
+                            maxAgeSeconds: 30 * 24 * 60 * 60
+                        },
+                    },
+                    method: 'GET'
+                },
+            ]
+        }),
+        // new WorboxWebpack.InjectManifest({
+        //     swSrc: './src/sw.js',
         //     swDest: 'service-worker.js',
-        //     runtimeCaching: [ 
-        //         {
-        //             urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-
-        //             handler: 'StaleWhileRevalidate',
-            
-        //             options: {
-
-        //               cacheName: 'images',
-            
-        //               expiration: {
-        //                 maxEntries: 15,
-        //               },
-        //             },
-        //             method: 'GET'
-        //         },
-        //         {
-        //             urlPattern: /^https?.*/,
-        //             handler: 'NetworkFirst',
-        //         },
-        //         {
-        //             urlPattern: /^https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/,
-        //             handler: 'CacheFirst',
-        //             options: {
-        //                 cacheName: 'google-fonts-cache',
-        //                 expiration:{
-        //                     maxAgeSeconds: 30 * 24 * 60 * 60
-        //                 },
-        //             },
-        //             method: 'GET'
-        //         },
-        //     ]
-        // }),
+        // })
     ] 
 }

@@ -55,6 +55,7 @@ const NavBar = withRouter( props => {
                             return{id: doc.id,data: doc.data()}
                         }),
                         error: null,
+                        uid: user.uid
                     })
                 }
             })

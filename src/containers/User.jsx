@@ -91,7 +91,7 @@ const User = props => {
         location.reload();
     }
     return(
-        <main className="pt-20 bg-image">
+        <main className="pt-20 bg-image cursor_new">
             <div className="flex w-full flex-col-reverse sm:justify-around items-center h-auto">
                 <div className="flex flex-col items-center py-8">
                     <img className="bg-primary rounded-lg w-32 h-32" id="img" src={user ? user.photoURL ? user.photoURL : Icon : Icon}/>

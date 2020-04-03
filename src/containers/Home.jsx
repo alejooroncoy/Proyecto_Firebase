@@ -61,7 +61,7 @@ const Home = props => {
         })
     },[props.match.path])
     return(
-        <main className="pt-20 bg-image">
+        <main className="pt-20 bg-image cursor_new ">
             <section className="mt-8 ml-8 md:ml-24 grid alejoGrid">
                <Search/>
                {

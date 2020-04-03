@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cerveceria Wilmer</title>
-    <style>
-        #container
-        {
-            cursor: url('../src/assets/static/cerveza_g.png'), auto;
-        }
-    </style>
 </head>
 <body>
+    <noscript>
+        <h1>Esta pagina necesita JavaScript para que funcione!</h1>
+    </noscript>
     <div id="container"></div>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+    .then(registration => {
+      console.log('Se registro!')
+    }).catch(registrationError => {
+      console.log(registrationError);
+    });
+  });
+};
+    </script>
 </body>
 </html>
