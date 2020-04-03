@@ -81,8 +81,6 @@ const User = props => {
                 })
             }
         )
-        
-        location.reload();
     }
     const update = e => {
         e.preventDefault();
