@@ -11,7 +11,7 @@ import PageLoading from '../components/PageLoading';
 import NavBar from '../components/navBar';
 import Usuario from '../components/Usuario';
 const Home = props => {
-    const isMobile = () => {
+    function isMobile(){
         return (
             (navigator.userAgent.match(/Android/i)) ||
             (navigator.userAgent.match(/webOS/i)) ||
@@ -66,7 +66,7 @@ const Home = props => {
                <Search/>
                {
                    isMobile() === null ? 
-                   <NavBar/>: <Usuario />
+                    <NavBar/>  : <Usuario />
                }
             </section>  
             <Catalogo text="Nuestros productos">

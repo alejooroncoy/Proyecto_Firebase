@@ -1,7 +1,7 @@
 {
   "name": "proyecto_propio_real",
   "version": "1.0.0",
-  "description": "",
+  "description": "Trabajo de una cervecería con Firebase,React,materialize,tailwindcss,sass",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
     "dev": "postcss src/assets/styles/tailwind.css -o src/assets/styles/style.scss --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "alejo2705",
   "license": "ISC",
   "dependencies": {
     "@sweetalert/with-react": "^0.1.1",
