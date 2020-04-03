@@ -21,11 +21,11 @@ const Home = props => {
             (navigator.userAgent.match(/iPad/i)) ||
             (navigator.userAgent.match(/iBlackBerry/i))
         );
-    }
+    };
     const [state,setState] = useState({
         error: false,
         item: []
-    })
+    });
     useLayoutEffect(() => {
         firebase.firestore().collection('products')
         .orderBy('title', 'asc')
