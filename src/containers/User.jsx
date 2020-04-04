@@ -5,6 +5,16 @@ import 'firebase/auth';
 import 'firebase/storage';
 import '../assets/styles/user.scss';
 const User = props => {
+    function isMobile(){
+        return (
+            (navigator.userAgent.match(/Android/i)) ||
+            (navigator.userAgent.match(/webOS/i)) ||
+            (navigator.userAgent.match(/iPhone/i)) ||
+            (navigator.userAgent.match(/iPod/i)) ||
+            (navigator.userAgent.match(/iPad/i)) ||
+            (navigator.userAgent.match(/iBlackBerry/i))
+        );
+    };
     const [state,setState] = useState({
         name: '',
         email: '',
@@ -71,10 +81,25 @@ const User = props => {
                 task.snapshot.ref
                   .getDownloadURL()
                   .then(url => {
-                    sessionStorage.setItem('newAvatar', url)
-                    firebase.auth().currentUser.updateProfile({
-                        photoURL: url
-                    })
+                      if(isMobile() === null)
+                      {
+                        sessionStorage.setItem('newAvatar', url)
+                        firebase.auth().currentUser.updateProfile({
+                            photoURL: url
+                        })
+                        location.reload();
+                      }else {
+                        sessionStorage.setItem('newAvatar', url)
+                        firebase.auth().currentUser.updateProfile({
+                            photoURL: url
+                        })
+                        const divP = document.querySelector("#divP");
+                        const h1 = document.createElement("h1");
+                        h1.innerHTML = "Necesita actualizar para ver los cambios";
+                        h1.classList = "font-semibold mx-5 my-5 p-10 border-4 text-center"
+                        h1.style = {borderRadius: '20px'}
+                        divP.appendChild(h1);
+                      }
                   })
                   .catch(err => {
                     alert(`Error obteniendo downloadURL => ${err}`, 4000)
@@ -104,11 +129,13 @@ const User = props => {
                             <input className="file-path validate cursor" type="text"/>
                             </div>
                         </div>
-                        <div className="progress pt-4 mt-10">
-                                <div className="determinate" style={{
+                        <div id="divP">
+                            <div className="progress pt-4 mt-10">
+                                    <div className="determinate" style={{
                                     width: `${state.porcentaje}%`
-                                }}></div>
+                                    }}></div>
                             </div>
+                        </div>
                     </form>
                 </div>
                 <h1 className="md:mx-64 text-4xl sm:text-5xl font-bold py-4">{`User: ${name1.nameUser}`}</h1>

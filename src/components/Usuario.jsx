@@ -73,9 +73,6 @@ const Usuario = props => {
                 user ? 
                 <a
                 className="mr-6 float-right btn-large waves-effect waves-light black rounded-lg notification-button cursor especial1 dropdown-trigger" style={{padding: 0,lineHeight: 0}} data-target='dropdown1' onClick={menuV}>
-                <small className="notification-badge" style={{
-                    right: '33px',
-                }}>{state.item.length > 0 ? state.item.length: 0}</small>
                 <img className="" src={user.photoURL}>
                 </img></a>
                 :
@@ -91,10 +88,12 @@ const Usuario = props => {
                 </a>
             }
          <ul id='dropdown1' style={state.menu} className='dropdown-content'>
-            <li><Link to={`/user/${state.uid}`}><i className="material-icons">account_box</i>Usuario</Link></li>
+            <li><Link to={`/user/${state.uid}`}><i className="material-icons text-primary">account_box</i><span className="text-secondary font-semibold">Usuario</span></Link></li>
             <li className="divider" tabIndex="-1"></li>
-            <li><Link to={`/carrito/${state.uid}`}><i className="material-icons">shopping_basket</i>Carrito</Link></li>
-            <li><a href="#!" onClick={Close1}>Cerrar</a></li>
+            <li><Link to={`/carrito/${state.uid}`}><i className="material-icons text-primary">shopping_basket</i><span className="text-secondary  font-semibold">carrito</span><small className="notification-badge" style={{
+                right: '-18px'
+            }}>{state.item.length > 0 ? state.item.length: 0}</small></Link></li>
+            <li><a onClick={Close1} className="  font-semibold" style={{color: 'black'}}>Cerrar</a></li>
         </ul>
         </div>
         </>

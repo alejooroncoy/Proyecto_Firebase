@@ -25,6 +25,15 @@ const Home = props => {
         error: false,
         item: []
     });
+    const [stateP,setStateP] = useState({
+        position: 1
+    })
+    const aumentar = () => {
+        setStateP({
+            ...stateP,
+            position: stateP.position + 1
+        });
+    };
     useLayoutEffect(() => {
         firebase.firestore().collection('products')
         .orderBy('title', 'asc')
@@ -76,7 +85,7 @@ const Home = props => {
                         <h1>Ups:( Hubo un error:(</h1> :
                         state.item.length > 0 ?
                        state.item.map(item => 
-                        <Products key={item.id} {...item}/>) :
+                        <Products key={item.id} aumentar={aumentar} position={stateP.position} {...item}/>) :
                         <PageLoading/>
                     }
                 </Contenedor>
