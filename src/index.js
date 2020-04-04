@@ -3,7 +3,6 @@ import reactDOM from 'react-dom';
 import App from './routers/App';
 import firebase from 'firebase/app';
 import 'firebase/analytics';
-import 'firebase/messaging';
 const container = document.getElementById("container");
 firebase.initializeApp({
     apiKey: "AIzaSyBFWI1EkToFw4vcCectreIppHAISigJE0Y",

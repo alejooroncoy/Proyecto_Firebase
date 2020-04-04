@@ -18,7 +18,7 @@ const CarritoPA = props => {
             <div className={props.item.length > 0 ? "w-full h-20 flex justify-center items-center" : 'w-full flex justify-center h-20 items-center'}>
             <h1 className="text-2xl font-extrabold text-secondary">{`Carrito de compras de ${props.name}`}</h1>
             </div>
-            <div className={props.item.length > 0 ? "w-full" : "w-full flex justify-center h-64 items-center"}>
+            <div className={props.item.length > 0 ? "w-full" : "w-full flex justify-center items-center"}>
             {
                 props.item.map(item => 
                     <ProductsC key={item.id} {...item}/>)

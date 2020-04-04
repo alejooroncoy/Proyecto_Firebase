@@ -97,9 +97,9 @@ const User = props => {
                         const h1 = document.createElement("h1");
                         const button = document.createElement("button");
                         button.classList = "btn black text-primary"
-                        button.innerHTML = "Actualizar"
+                        button.innerHTML = "Recargar"
                         h1.innerHTML = "Necesita actualizar para ver los cambios";
-                        h1.classList = "font-semibold mx-5 my-5 p-10 border-4 text-center"
+                        h1.classList = "font-semibold mx-5 my-5 text-center"
                         h1.style = {borderRadius: '20px'}
                         divP.appendChild(h1);
                         divP.appendChild(button);
