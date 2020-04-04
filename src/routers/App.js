@@ -8,6 +8,7 @@ import Login from '../containers/Login';
 import Register from '../containers/Register';
 import RePassword from '../components/RePassword';
 import User from '../containers/User';
+import Carrito from '../containers/Carrito';
 const App = () => {
     const history = createBrowserHistory();
 
@@ -27,6 +28,7 @@ const App = () => {
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/repassword" component={RePassword} />
                 <Route exact path="/user/:id" component={User}/>
+                <Route exact path="/carrito/:id" component={Carrito} />
                 <Redirect from="/home" to="/" />
             </Switch>
         </Layout>

@@ -66,7 +66,7 @@ module.exports = {
         ]
     },
     devServer: {
-        port: 5050,
+        port: 8080,
         historyApiFallback: true,
     },
     plugins: [
@@ -105,62 +105,62 @@ module.exports = {
                 "apple-mobile-web-app-capable": 'yes',
             }
         }),
-         new WorboxWebpack.GenerateSW({
-            offlineGoogleAnalytics: {
-                parameterOverrides: {
-                    cd1: 'offline'
-                }
-            },
-            skipWaiting: true,
-            clientsClaim: true,
-            swDest: 'service-worker.js',
-            runtimeCaching: [ 
-                {
-                    urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+        //  new WorboxWebpack.GenerateSW({
+        //     offlineGoogleAnalytics: {
+        //         parameterOverrides: {
+        //             cd1: 'offline'
+        //         }
+        //     },
+        //     skipWaiting: true,
+        //     clientsClaim: true,
+        //     swDest: 'service-worker.js',
+        //     runtimeCaching: [ 
+        //         {
+        //             urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
 
-                    handler: 'StaleWhileRevalidate',
+        //             handler: 'StaleWhileRevalidate',
             
-                    options: {
+        //             options: {
 
-                      cacheName: 'imagesV',
+        //               cacheName: 'imagesV',
             
-                      expiration: {
-                        maxEntries: 15,
-                      },
-                    },
-                    method: 'GET'
-                },
-                {
-                    urlPattern: /^https?.*/,
-                    handler: 'NetworkFirst',
-                    method: 'GET'
-                },
-                {
-                    urlPattern: new RegExp("firebasestorage.googleapis.com"),
-                    handler: 'CacheFirst',
-                    options: {
-                        cacheName: 'images'
-                    },
-                    method: 'GET'
-                },
-                {
-                    urlPattern: /^http?.*/,
-                    handler: 'NetworkFirst',
-                    method: 'GET'
-                },
-                {
-                    urlPattern: /^https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/,
-                    handler: 'CacheFirst',
-                    options: {
-                        cacheName: 'google-fonts-cache',
-                        expiration:{
-                            maxAgeSeconds: 30 * 24 * 60 * 60
-                        },
-                    },
-                    method: 'GET'
-                },
-            ]
-        }),
+        //               expiration: {
+        //                 maxEntries: 15,
+        //               },
+        //             },
+        //             method: 'GET'
+        //         },
+        //         {
+        //             urlPattern: /^https?.*/,
+        //             handler: 'NetworkFirst',
+        //             method: 'GET'
+        //         },
+        //         {
+        //             urlPattern: /^https:\/\/firebasestorage.(?:googleapis|gstatic).com\/(.*)/,
+        //             handler: 'StaleWhileRevalidate',
+        //             options: {
+        //                 cacheName: 'imagesHome'
+        //             },
+        //             method: 'GET'
+        //         },
+        //         {
+        //             urlPattern: /^http?.*/,
+        //             handler: 'NetworkFirst',
+        //             method: 'GET'
+        //         },
+        //         {
+        //             urlPattern: /^https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/,
+        //             handler: 'CacheFirst',
+        //             options: {
+        //                 cacheName: 'google-fonts-cache',
+        //                 expiration:{
+        //                     maxAgeSeconds: 30 * 24 * 60 * 60
+        //                 },
+        //             },
+        //             method: 'GET'
+        //         },
+        //     ]
+        // }),
         // new WorboxWebpack.InjectManifest({
         //     swSrc: './src/sw.js',
         //     swDest: 'service-worker.js',

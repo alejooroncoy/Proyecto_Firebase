@@ -9,7 +9,7 @@ const Usuario = props => {
         item: [],
         url: '',
         menu: {},
-        uid: ''
+        uid: 0,
     });
     const user = firebase.auth().currentUser;
     useEffect(() => {
@@ -25,6 +25,8 @@ const Usuario = props => {
                     return setState({
                         ...state,
                         error: null,
+                        url: user.photoURL,
+                        uid: user.uid
                     });
                 }
                 else {
@@ -70,14 +72,11 @@ const Usuario = props => {
             {
                 user ? 
                 <a
-                className="mr-6 float-right btn-floating pulse btn-large waves-effect waves-light black notification-button cursor especial1 dropdown-trigger" style={{
-                    width: '5rem',
-                    height: '5rem'
-                }} data-target='dropdown1' onClick={menuV}>
+                className="mr-6 float-right btn-large waves-effect waves-light black rounded-lg notification-button cursor especial1 dropdown-trigger" style={{padding: 0,lineHeight: 0}} data-target='dropdown1' onClick={menuV}>
                 <small className="notification-badge" style={{
                     right: '33px',
                 }}>{state.item.length > 0 ? state.item.length: 0}</small>
-                <img className="circle bottom-4" src={user.photoURL}>
+                <img className="" src={user.photoURL}>
                 </img></a>
                 :
                  <a
@@ -94,7 +93,7 @@ const Usuario = props => {
          <ul id='dropdown1' style={state.menu} className='dropdown-content'>
             <li><Link to={`/user/${state.uid}`}><i className="material-icons">account_box</i>Usuario</Link></li>
             <li className="divider" tabIndex="-1"></li>
-            <li><a href="#!"><i className="material-icons">shopping_basket</i>Carrito</a></li>
+            <li><Link to={`/carrito/${state.uid}`}><i className="material-icons">shopping_basket</i>Carrito</Link></li>
             <li><a href="#!" onClick={Close1}>Cerrar</a></li>
         </ul>
         </div>
