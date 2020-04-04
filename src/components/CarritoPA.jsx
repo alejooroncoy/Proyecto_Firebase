@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductsC from './productsC';
+import ProductsC from './ProductsC';
 import IconC from '../assets/static/cervecitas.png';
 import IconCw from '../assets/static/cervecitas.webp'
 const CarritoPA = props => {
