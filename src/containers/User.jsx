@@ -95,10 +95,14 @@ const User = props => {
                         })
                         const divP = document.querySelector("#divP");
                         const h1 = document.createElement("h1");
+                        const button = document.createElement("button");
+                        button.classList = "btn black text-primary"
+                        button.innerHTML = "Actualizar"
                         h1.innerHTML = "Necesita actualizar para ver los cambios";
                         h1.classList = "font-semibold mx-5 my-5 p-10 border-4 text-center"
                         h1.style = {borderRadius: '20px'}
                         divP.appendChild(h1);
+                        divP.appendChild(button);
                       }
                   })
                   .catch(err => {
@@ -129,11 +133,14 @@ const User = props => {
                             <input className="file-path validate cursor" type="text"/>
                             </div>
                         </div>
-                        <div id="divP">
+                        <div>
                             <div className="progress pt-4 mt-10">
                                     <div className="determinate" style={{
                                     width: `${state.porcentaje}%`
                                     }}></div>
+                            </div>
+                            <div id="divP" className="flex flex-col items-center">
+
                             </div>
                         </div>
                     </form>
