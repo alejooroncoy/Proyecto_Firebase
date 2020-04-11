@@ -70,7 +70,7 @@ const eliminar = e => {
         <h1 className="text-center text-4xl font-bold md:text-6xl">{title}</h1>
         <div className=" flex flex-col md:flex-row">
             <div className="flex flex-col p-16 w-full h-auto md:w-1/2 md:p-20 md:justify-center md:items-center md:w-1/2">
-                <img className="materialboxed rounded-lg" src={cover} alt={title}/>
+                <img className="materialboxed rounded-lg cursor" src={cover} alt={title}/>
                 <h2 className="font-semibold text-justify text-2xl md:text-center md:text-3xl">{description}</h2>
             </div>
             <section className="md:flex md:flex-col md:w-1/2 md:items-center md:justify-center md:self-center">

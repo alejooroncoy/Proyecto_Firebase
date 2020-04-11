@@ -77,14 +77,14 @@ const Products =withRouter( props => {
         <>
              <div className="card col s12 m6 l3 xl3">
            <div className="card-image">
-               <Link to={{
+               <Link className="cursor" to={{
                    pathname: `product/${id}`,
                    state: {
                        data: state.item,
                        id: id
                    }
                }}>
-               <img className="responsive-img" 
+               <img className="responsive-img cursor" 
                src={data.cover} 
                alt={data.title}
                /> 
