@@ -13,8 +13,11 @@ const NavBar = withRouter( props => {
         uid: 0,
         userName: ''
     })
+    const [state2,setState2] = useState(0);
     const user = firebase.auth().currentUser;
     useEffect(() => {
+        var elems = document.querySelectorAll('.materialboxed');
+        var instances = M.Materialbox.init(elems);
         firebase.auth().onAuthStateChanged(user =>{
             if(user)
             {
@@ -30,9 +33,10 @@ const NavBar = withRouter( props => {
                 uid: user.uid,
                 userName: user.displayName
             })
+            setState2(user.uid)
             firebase.firestore()
             .collection(user.uid)
-            .orderBy('position', 'asc')
+            .orderBy('tiempo','asc')
             .onSnapshot(objeto => {
                 if(!objeto)
                 {
@@ -40,6 +44,7 @@ const NavBar = withRouter( props => {
                         ...state,
                         error: true
                     })
+                    setState2(user.uid)
                 }
                 if(objeto.empty)
                 {
@@ -47,6 +52,7 @@ const NavBar = withRouter( props => {
                         ...state,
                         error: null,
                     });
+                    setState2(user.uid)
                 }
                 else {
                     setState({
@@ -57,12 +63,19 @@ const NavBar = withRouter( props => {
                         error: null,
                         uid: user.uid
                     })
+                    setState2(user.uid)
                 }
             })
             if(user.photoURL)
                 {
                     const img = document.querySelector("#img");
-                    img.src = user.photoURL
+                    img.src = user.photoURL;
+                    setState({
+                        ...state,
+                        uid: user.uid,
+                        userName: user.displayName
+                    })
+                    setState2(user.uid)
                 }
             }
             else{
@@ -112,12 +125,12 @@ const NavBar = withRouter( props => {
                         <div className="background">
                             <img src={Icon2} alt="image"/>
                         </div>
-                        <a href="#user" onClick={image}><img id="img" className="circle cursor" src={user ? user.photoURL ? user.photoURL : Icon : Icon}/></a>
+                        <a href="#user" onClick={image}><img id="img" className="circle cursor materialboxed" src={user ? user.photoURL ? user.photoURL : Icon : Icon}/></a>
                         <a><span className="black-text name font-bold" id="span">Hola</span></a>
                         <a><p className="email"></p></a>
                         </div></li>
                         <li><Link to={{
-                            pathname: `/user/${state.uid}`,
+                            pathname: `/user/${state.uid || state2}`,
                             state:{
                                 userName: `${state.userName}`
                             }

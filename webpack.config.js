@@ -79,7 +79,8 @@ module.exports = {
             filename: 'assets/[name].css',
         }),
         new PwaManifestPlugin({
-            short_name: "Cervezería Wilmer", 
+            short_name: "Cervezería Wilmer",
+            "gcm_sender_id": "103953800507", 
             name: "Buena elección, Cervezero",
             description: 'Las mejores Cervezas',
             inject: true,
@@ -105,65 +106,9 @@ module.exports = {
                 "apple-mobile-web-app-capable": 'yes',
             }
         }),
-         new WorboxWebpack.GenerateSW({
-            offlineGoogleAnalytics: {
-                parameterOverrides: {
-                    cd1: 'offline'
-                }
-            },
-            skipWaiting: true,
-            clientsClaim: true,
+        new WorboxWebpack.InjectManifest({
+            swSrc: './src/sw.js',
             swDest: 'service-worker.js',
-            runtimeCaching: [ 
-                {
-                    urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-
-                    handler: 'StaleWhileRevalidate',
-            
-                    options: {
-
-                      cacheName: 'imagesV',
-            
-                      expiration: {
-                        maxEntries: 15,
-                      },
-                    },
-                    method: 'GET'
-                },
-                {
-                    urlPattern: /^https?.*/,
-                    handler: 'NetworkFirst',
-                    method: 'GET'
-                },
-                {
-                    urlPattern: /^https:\/\/firebasestorage.(?:googleapis|gstatic).com\/(.*)/,
-                    handler: 'StaleWhileRevalidate',
-                    options: {
-                        cacheName: 'imagesHome'
-                    },
-                    method: 'GET'
-                },
-                {
-                    urlPattern: /^http?.*/,
-                    handler: 'NetworkFirst',
-                    method: 'GET'
-                },
-                {
-                    urlPattern: /^https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/,
-                    handler: 'CacheFirst',
-                    options: {
-                        cacheName: 'google-fonts-cache',
-                        expiration:{
-                            maxAgeSeconds: 30 * 24 * 60 * 60
-                        },
-                    },
-                    method: 'GET'
-                },
-            ]
-        }),
-        // new WorboxWebpack.InjectManifest({
-        //     swSrc: './src/sw.js',
-        //     swDest: 'service-worker.js',
-        // })
+        })
     ] 
 }

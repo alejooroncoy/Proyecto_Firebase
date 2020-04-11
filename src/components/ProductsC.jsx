@@ -26,6 +26,13 @@ const ProductsC = props => {
     const quitar = e =>{
         e.preventDefault();
         const user = firebase.auth().currentUser;
+        if(data.cantidad <= 1)
+        {
+        firebase.firestore()
+        .collection(user.uid)
+        .doc(id)
+        .delete();
+        }
         firebase.firestore()
         .collection(user.uid)
         .doc(id)

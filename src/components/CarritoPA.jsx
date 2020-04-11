@@ -16,7 +16,7 @@ const CarritoPA = props => {
     return(
         <main className="pt-20 bg-image cursor_new">
             <div className={props.item.length > 0 ? "w-full h-20 flex justify-center items-center" : 'w-full flex justify-center h-20 items-center'}>
-            <h1 className="text-2xl font-extrabold text-secondary">{`Carrito de compras de ${props.name}`}</h1>
+            <h1 className="text-2xl font-extrabold text-secondary text-center">{`Carrito de compras de ${props.name}`}</h1>
             </div>
             <div className={props.item.length > 0 ? "w-full" : "w-full flex justify-center items-center"}>
             {

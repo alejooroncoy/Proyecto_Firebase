@@ -14,7 +14,7 @@ const Carrito = props => {
             {
                 firebase.firestore()
                 .collection(`${user.uid}`)
-                .orderBy('position','asc')
+                .orderBy('tiempo','asc')
                 .onSnapshot(objeto => {
                     if(objeto.empty)
                     {

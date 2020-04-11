@@ -35,9 +35,19 @@
 {
     bottom: 4.4rem;
 }
+.h-fullN 
+{
+    height: -webkit-fill-available;
+}
 @variants hover {
     .cursor
     {
         cursor:url('../static/cerveza_g_mov.png'),auto;
     }
+};
+@responsive md {
+    .w-pepe 
+{
+    width: 58rem;
+}
 }

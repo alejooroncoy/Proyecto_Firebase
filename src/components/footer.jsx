@@ -61,7 +61,7 @@ const Footer = withRouter(props =>  {
     const title = "Wilmer Cervezas"
         navigator.share({
             title: `${title}`,
-            text: 'Comparte a otro Cervecero',
+            text:  `${state.name} te invita a Cervecería wilmer!`,
             url: document.location.href,
         })
         .then(() => {

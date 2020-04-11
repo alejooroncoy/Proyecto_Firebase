@@ -1,7 +1,7 @@
 import React,{useLayoutEffect,useState,useEffect} from 'react';
 import '../assets/styles/products.scss';
 import firebase from 'firebase/app';
-import {withRouter} from 'react-router-dom';
+import {withRouter,Link} from 'react-router-dom';
 import 'firebase/storage';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -15,7 +15,7 @@ const Products =withRouter( props => {
             {
                 firebase.firestore()
                 .collection(`${user.uid}`)
-                .orderBy('position','asc')
+                .orderBy('tiempo','asc')
                 .onSnapshot(objeto => {
                     if(objeto.empty)
                     {
@@ -32,7 +32,7 @@ const Products =withRouter( props => {
                         })
                     }
                 })
-            }
+            } 
     })},[]);
     const {id,data,position} = props;
     const enviar = e =>{
@@ -41,14 +41,13 @@ const Products =withRouter( props => {
         const existe = state.item.find(item => item.id == id);
         if(user)
         {
-        props.aumentar();
          firebase.firestore().collection(user.uid).doc(id).set({
             cantidad: data.cantidad,
             cost: data.cost,
             cover: data.cover,
             description: data.description,
             title: data.title,
-            position: position
+            tiempo: firebase.firestore.FieldValue.serverTimestamp()
         });
         if(existe)
         {
@@ -78,11 +77,19 @@ const Products =withRouter( props => {
         <>
              <div className="card col s12 m6 l3 xl3">
            <div className="card-image">
+               <Link to={{
+                   pathname: `product/${id}`,
+                   state: {
+                       data: state.item,
+                       id: id
+                   }
+               }}>
                <img className="responsive-img" 
                src={data.cover} 
                alt={data.title}
                /> 
-                 <a href="#" id="set_add" className="btn-floating pulse halfway-fab waveseffect waves-light black hover:cursor" onClick={enviar}>
+               </Link>
+                 <a href="#" id="set_add" className="btn-floating pulse halfway-fab waveseffect waves-light black cursor" onClick={enviar}>
                 <i className="material-icons" 
                 id = {id}
                 >

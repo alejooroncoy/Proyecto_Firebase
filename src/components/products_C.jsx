@@ -26,12 +26,25 @@ const Products_comprados = props => {
     const quitar = e =>{
         e.preventDefault();
         const user = firebase.auth().currentUser;
+        if(data.cantidad <= 0)
+        {
+            firebase.firestore()
+        .collection(user.uid)
+        .doc(id)
+        .update({
+            cantidad: 1 
+        })
+        firebase.firestore()
+        .collection(user.uid)
+        .doc(id)
+        .delete();
+        }else { 
         firebase.firestore()
         .collection(user.uid)
         .doc(id)
         .update({
             cantidad: data.cantidad - 1
-        })
+        })}
     }
     return(
         <>
@@ -45,10 +58,10 @@ const Products_comprados = props => {
                             <p className="p">{`Estás pidiendo ${data.cantidad} ${data.cantidad > 1 ? 'veces' : 'vez'} este mismo producto`}</p>
                             {
                                 data.cantidad > 1 ?
-                                <a className="btn waves-effect waves-light black text-primary font-extrabold hover:cursor" onClick={remove}>
+                                <a className="btn waves-effect waves-light black text-primary font-extrabold cursor" onClick={remove}>
                                 Eliminar Productos<i className="material-icons right">remove_shopping_cart</i>
                                 </a>:
-                                <a className="btn waves-effect waves-light black text-primary font-extrabold hover:cursor" onClick={remove}>
+                                <a className="btn waves-effect waves-light black text-primary font-extrabold cursor" onClick={remove}>
                                 Eliminar Producto<i className="material-icons right">remove_shopping_cart</i>
                             </a>
                             }

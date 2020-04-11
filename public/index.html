@@ -11,18 +11,6 @@
     </noscript>
     <div id="container"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-      if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-    .then(registration => {
-      console.log('Se registro!')
-    }).catch(registrationError => {
-      console.log(registrationError);
-    });
-  });
-};
-    </script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </body>
 </html>

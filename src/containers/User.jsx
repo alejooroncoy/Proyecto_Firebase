@@ -1,5 +1,6 @@
 import React,{ useLayoutEffect,useState } from 'react';
 import Icon from '../assets/static/user-icon.png';
+import Materialbox from 'materialize-css/js/materialbox';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/storage';
@@ -22,10 +23,14 @@ const User = props => {
     })
     const [name1,setName] = useState({
         nameUser:'',
-        photoURL: ''
+        photoURL: '',
+        porcentaje: 0,
+        color: '',
     });
     const user = firebase.auth().currentUser;
     useLayoutEffect(() => {
+        const elems = document.querySelectorAll('.materialboxed');
+        const instances = M.Materialbox.init(elems);
         firebase.auth().onAuthStateChanged(user => {
             if(user)
             {
@@ -68,10 +73,14 @@ const User = props => {
         task.on(
             'state_changed',
             snapshot => {
-                const porcentaje = snapshot.bytesTransferred / snapshot.totalBytes * 100
+                const porcentaje1 = snapshot.bytesTransferred / snapshot.totalBytes * 100
                 setState({
                     ...state,
-                    porcentaje: porcentaje,
+                    porcentaje: porcentaje1,
+                })
+                setName({
+                    ...state,
+                    porcentaje: porcentaje1
                 })
             },
             err => {
@@ -118,11 +127,14 @@ const User = props => {
         })
         location.reload();
     }
+    const imagen = e => {
+        e.preventDefault();
+    }
     return(
         <main className="pt-20 bg-image cursor_new">
             <div className="flex w-full flex-col-reverse sm:justify-around items-center h-auto">
                 <div className="flex flex-col items-center py-8">
-                    <img className="bg-primary rounded-lg w-32 h-32" id="img" src={user ? user.photoURL ? user.photoURL : Icon : Icon}/>
+                    <img className="bg-primary rounded-lg w-32 h-32 materialboxed cursor" onClick={imagen} id="img" src={user ? user.photoURL ? user.photoURL : Icon : Icon}/>
                     <form action="#" className="cursor">
                         <div className="file-field input-field cursor">
                             <div className="btn bg-black text-primary font-extrabold hover:text-black hover:bg-primary cursor">
@@ -134,10 +146,14 @@ const User = props => {
                             </div>
                         </div>
                         <div>
-                            <div className="progress pt-4 mt-10">
-                                    <div className="determinate" style={{
+                            <div className="progress pt-4 mt-10 flex items-center justify-center">
+                            <span className="font-bold z-10" style={{marginBottom: 13}}> 
+                                    {`${name1.porcentaje}%`}
+                                    </span>
+                                    <div className="determinate flex justify-center" style={{
                                     width: `${state.porcentaje}%`
-                                    }}></div>
+                                    }}> 
+                                    </div>
                             </div>
                             <div id="divP" className="flex flex-col items-center">
 
@@ -145,7 +161,7 @@ const User = props => {
                         </div>
                     </form>
                 </div>
-                <h1 className="md:mx-64 text-4xl sm:text-5xl font-bold py-4">{`User: ${name1.nameUser}`}</h1>
+                <h1 className="md:mx-64 text-4xl sm:text-5xl font-bold py-4">{`User: ${name1.nameUser || state.name}`}</h1>
             </div>
         <div className="container">
         <div className="row mb-0">

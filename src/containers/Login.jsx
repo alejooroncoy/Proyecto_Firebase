@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import IsOffline from '../components/IsOffline';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase/app';
@@ -14,6 +14,13 @@ const Login = props => {
             [e.target.name]: e.target.value
         })
     };
+    // useEffect(() => {
+    //     setState({
+    //         ...state,
+    //         email: '',
+    //         password: ''
+    //     })
+    // },[props.match.path])
     const login = e => {
         e.preventDefault();
         firebase.auth().signInWithEmailAndPassword(state.email, state.password)
