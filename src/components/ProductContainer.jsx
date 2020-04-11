@@ -9,6 +9,7 @@ const {id} = props;
 const [state,setState] = useState({
     nuevaCantidad: ''
 })
+const user = firebase.auth().currentUser;
 useEffect(() => {
     var elems = document.querySelectorAll('.materialboxed');
     var instances = M.Materialbox.init(elems);
@@ -86,7 +87,13 @@ const eliminar = e => {
                 </div>
             </div>
             <div className={`w-full my-4 flex ${props.existe ? 'justify-around' : 'justify-center'} items-center div5`}>
-                    <button onClick={enviar} className="btn bg-black text-primary button5 cursor hover:bg-primary focus:bg-primary focus:text-black  hover:text-black">Agregar al carrito<i className="material-icons right">add_shopping_cart</i></button>
+                    {
+                        user ? <button onClick={enviar} className="btn bg-black text-primary button5 cursor hover:bg-primary focus:bg-primary focus:text-black  hover:text-black">Agregar al carrito<i className="material-icons right">add_shopping_cart</i></button>
+                        :
+                        <>
+                        <h1 className="font-semibold text-4xl">Necesitas una cuenta para agregar:(</h1>
+                        </>
+                    }
                     {
                         props.existe ? 
                         <button className="cursor btn bg-black text-primary hover:bg-primary focus:bg-primary focus:text-black  hover:text-black" onClick={eliminar}>Eliminar del carrito<i className="material-icons right">remove_shopping_cart</i></button>
